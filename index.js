@@ -18,7 +18,9 @@ io.on('connection', function(socket){
     }
 
     socket.on('move', function(data){
-        console.log('client moved');
+        console.log('client moved', JSON.stringify(data));
+
+        socket.broadcast.emit('move', data);
     });
 
     socket.on('disconnect', function(){
