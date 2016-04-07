@@ -11,7 +11,7 @@ io.on('connection', function(socket){
     var thisClientid = shortid.generate();
     console.log('client connected, broadcasting spawn ' + thisClientid);
 
-    socket.broadcast.emit('spawn');
+    socket.broadcast.emit('spawn', { id: thisClientid });
 
     playerCount++;
 
