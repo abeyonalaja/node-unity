@@ -5,10 +5,11 @@ var shortid = require('shortid');
 
 var playerCount = 0;
 console.log('server started')
-console.log(shortid.generate());
 
 io.on('connection', function(socket){
-    console.log('client connected, broadcasting spawn');
+
+    var thisClientid = shortid.generate();
+    console.log('client connected, broadcasting spawn ' + thisClientid);
 
     socket.broadcast.emit('spawn');
 
@@ -20,6 +21,7 @@ io.on('connection', function(socket){
     }
 
     socket.on('move', function(data){
+        data.id = thisClientid;
         console.log('client moved', JSON.stringify(data));
 
         socket.broadcast.emit('move', data);
