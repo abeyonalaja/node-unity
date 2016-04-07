@@ -1,9 +1,11 @@
 
 var io = require('socket.io')(process.env.PORT || 3000);
+var shortid = require('shortid');
+
 
 var playerCount = 0;
 console.log('server started')
-
+console.log(shortid.generate());
 
 io.on('connection', function(socket){
     console.log('client connected, broadcasting spawn');
