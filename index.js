@@ -10,7 +10,11 @@ io.on('connection', function(socket){
 
     var thisPlayerId = shortid.generate();
     var player = {
-        id: thisPlayerId
+        id: thisPlayerId,
+        position: {
+            x: 0,
+            y: 0
+        }
     };
     players.push(player);
     console.log('client connected, broadcasting spawn ' + thisPlayerId);
