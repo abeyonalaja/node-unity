@@ -9,7 +9,10 @@ console.log('server started')
 io.on('connection', function(socket){
 
     var thisPlayerId = shortid.generate();
-    players.push(thisPlayerId);
+    var player = {
+        id: thisPlayerId
+    };
+    players.push(player);
     console.log('client connected, broadcasting spawn ' + thisPlayerId);
 
     socket.broadcast.emit('spawn', { id: thisPlayerId });
