@@ -11,10 +11,8 @@ io.on('connection', function(socket){
     var thisPlayerId = shortid.generate();
     var player = {
         id: thisPlayerId,
-        position: {
-            x: 0,
-            y: 0
-        }
+        x: 0,
+        y: 0
     };
 
     players[playerId] = player;
@@ -25,13 +23,16 @@ io.on('connection', function(socket){
     for(var playerId in players) {
         if( playerId == thisPlayerId )
             continue;
-        socket.emit('spawn', { id: playerId}); 
+        socket.emit('spawn', players[playerId]); 
         console.log('sending spawn to new player');
     }
 
     socket.on('move', function(data){
         data.id = thisPlayerId;
         console.log('client moved', JSON.stringify(data));
+
+        player.position.x = data.x;
+        player.position.y = data.y;
 
         socket.broadcast.emit('move', data);
     });
