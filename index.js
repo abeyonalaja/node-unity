@@ -31,8 +31,8 @@ io.on('connection', function(socket){
         data.id = thisPlayerId;
         console.log('client moved', JSON.stringify(data));
 
-        player.position.x = data.x;
-        player.position.y = data.y;
+        player.x = data.x;
+        player.y = data.y;
 
         socket.broadcast.emit('move', data);
     });
