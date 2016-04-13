@@ -15,7 +15,7 @@ io.on('connection', function(socket){
         y: 0
     };
 
-    players[playerId] = player;
+    players[thisPlayerId] = player;
     console.log('client connected, broadcasting spawn ' + thisPlayerId);
 
     socket.broadcast.emit('spawn', { id: thisPlayerId });
